@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MHS Technology Map</title>
+	<style>
+		object { position:fixed; top:30px; left:0; height:calc(99%-30px); width:100% }
+	</style>
+</head>
+<body>
+
+    <label for="faculty-list">Faculty:</label>
+    <select name="faculty-list" id="faculty-list" onChange="changeFaculty();">
+        <option value="all">All</option>
+        <option value="english">English</option>
+        <option value="maths">Maths</option>
+        <option value="science">Science</option>
+        <option value="hsie">HSIE</option>
+        <option value="tas">TAS</option>
+        <option value="capa">CAPA</option>
+        <option value="pdhpe">PDHPE</option>
+        <option value="specialed">Special Ed</option>
+        <option value="library">Library</option>
+    </select>
+
+    <label for="device-list">Device Type:</label>
+    <select name="device-list" id="device-list" onChange="changeFaculty();">
+        <option value="all">All</option>
+        <option value="english">iPad</option>
+        <option value="laptop">Laptop</option>
+    </select>
+    
+    <object id="svg-map" data="map.svg" type="image/svg+xml"></object>
+
+
+    <script type="text/javascript">
+
+		let map = document.getElementById("svg-map");
+
+		map.addEventListener("load", function() {
+			let svgObject = map.contentDocument;
+			let Devices = svgObject.getElementById("Devices");
+			console.log(svgObject);
+			console.log(Devices);
+		});
+
+        function changeFaculty() {
+
+            // hide all devices
+            var devices = svgObject.querySelectorAll('[id^="Devices"]')[0].children;
+            for (let item of devices) {
+                item.style.visibility = "hidden";
+            }            
+
+            // get selected faculty
+            var faculty = document.getElementById("faculty-list");
+            var value = faculty.options[faculty.selectedIndex].value;
+            
+            // show selected faculty
+            if(value != "all") {
+                var facultyQuery = document.querySelectorAll('[id^="'+value+'"]');
+                facultyQuery.forEach(element => element.style.visibility = "visible");
+            } else {
+                var devices = document.querySelectorAll('[id^="Devices"]')[0].children;
+                for (let item of devices) {
+                    item.style.visibility = "visible";
+                } 
+            }            
+        }
+        
+    </script>
+</body>
+</html>
