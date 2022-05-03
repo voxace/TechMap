@@ -37,6 +37,7 @@
 
     <script type="text/javascript">
 
+        let svgObject;
 		let map = document.getElementById("svg-map");
 
 		map.addEventListener("load", function() {
@@ -55,15 +56,15 @@
             }            
 
             // get selected faculty
-            var faculty = document.getElementById("faculty-list");
-            var value = faculty.options[faculty.selectedIndex].value;
+            let faculty = document.getElementById("faculty-list");
+            let value = faculty.options[faculty.selectedIndex].value;
             
             // show selected faculty
             if(value != "all") {
-                var facultyQuery = document.querySelectorAll('[id^="'+value+'"]');
+                let facultyQuery = svgObject.querySelectorAll('[id^="'+value+'"]');
                 facultyQuery.forEach(element => element.style.visibility = "visible");
             } else {
-                var devices = document.querySelectorAll('[id^="Devices"]')[0].children;
+                var devices = svgObject.querySelectorAll('[id^="Devices"]')[0].children;
                 for (let item of devices) {
                     item.style.visibility = "visible";
                 } 
