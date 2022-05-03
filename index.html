@@ -14,34 +14,53 @@
             height: 98%;
             width: 99%
         }
+        
+        html * {
+            font-family: Arial, Helvetica, sans-serif !important;
+        }
+        
+        #DropDowns {
+            display: flex;
+            justify-content: center;
+        }
+        
+        label {
+            padding-left: 10px;
+            padding-right: 10px;
+            font-weight: bold;
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- Faculty Dropdown -->
-    <label for="faculty-list">Faculty:</label>
-    <select name="faculty-list" id="faculty-list" onChange="changeFaculty();">
-        <option value="all">All</option>
-        <option value="english">English</option>
-        <option value="maths">Maths</option>
-        <option value="science">Science</option>
-        <option value="hsie">HSIE</option>
-        <option value="tas">TAS</option>
-        <option value="capa">CAPA</option>
-        <option value="pdhpe">PDHPE</option>
-        <option value="specialed">Special Ed</option>
-        <option value="library">Library</option>
-        <option value="byod">BYOD</option>
-    </select>
+    <div id="DropDowns">
 
-    <!-- Device Dropdown -->
-    <label for="device-list">Device Type:</label>
-    <select name="device-list" id="device-list" onChange="changeFaculty();">
-        <option value="all">All</option>
-        <option value="ipad">iPad</option>
-        <option value="laptop">Laptop</option>
-    </select>
+        <!-- Faculty Dropdown -->
+        <label for="faculty-list">Faculty:</label>
+        <select name="faculty-list" id="faculty-list" onChange="changeFaculty();">
+            <option value="all">All</option>
+            <option value="english">English</option>
+            <option value="maths">Maths</option>
+            <option value="science">Science</option>
+            <option value="hsie">HSIE</option>
+            <option value="tas">TAS</option>
+            <option value="capa">CAPA</option>
+            <option value="pdhpe">PDHPE</option>
+            <option value="specialed">Special Ed</option>
+            <option value="library">Library</option>
+            <option value="byod">BYOD</option>
+        </select>
+
+        <!-- Device Dropdown -->
+        <label for="device-list">Device Type:</label>
+        <select name="device-list" id="device-list" onChange="changeFaculty();">
+            <option value="all">All</option>
+            <option value="ipad">iPad</option>
+            <option value="laptop">Laptop</option>
+        </select>
+
+    </div>
 
     <!-- School Map-->
     <object id="svg-map" data="map.svg" type="image/svg+xml"></object>
