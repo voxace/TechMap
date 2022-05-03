@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MHS Technology Map</title>
-	<style>
-		object { position:fixed; top:30px; left:0; height:calc(99%-30px); width:100% }
-	</style>
+    <style>
+        object {
+            position: fixed;
+            top: 30px;
+            left: 0;
+            height: calc(99%-30px);
+            width: 100%
+        }
+    </style>
 </head>
+
 <body>
 
+    <!-- Faculty Dropdown -->
     <label for="faculty-list">Faculty:</label>
     <select name="faculty-list" id="faculty-list" onChange="changeFaculty();">
         <option value="all">All</option>
@@ -25,27 +34,25 @@
         <option value="library">Library</option>
     </select>
 
+    <!-- Device Dropdown -->
     <label for="device-list">Device Type:</label>
     <select name="device-list" id="device-list" onChange="changeFaculty();">
         <option value="all">All</option>
         <option value="english">iPad</option>
         <option value="laptop">Laptop</option>
     </select>
-    
+
+    <!-- School Map-->
     <object id="svg-map" data="map.svg" type="image/svg+xml"></object>
 
-
     <script type="text/javascript">
-
         let svgObject;
-		let map = document.getElementById("svg-map");
+        let map = document.getElementById("svg-map");
 
-		map.addEventListener("load", function() {
-			let svgObject = map.contentDocument;
-			let Devices = svgObject.getElementById("Devices");
-			console.log(svgObject);
-			console.log(Devices);
-		});
+        map.addEventListener("load", function() {
+            svgObject = map.contentDocument;
+            let Devices = svgObject.getElementById("Devices");
+        });
 
         function changeFaculty() {
 
@@ -53,24 +60,24 @@
             var devices = svgObject.querySelectorAll('[id^="Devices"]')[0].children;
             for (let item of devices) {
                 item.style.visibility = "hidden";
-            }            
+            }
 
             // get selected faculty
             let faculty = document.getElementById("faculty-list");
             let value = faculty.options[faculty.selectedIndex].value;
-            
+
             // show selected faculty
-            if(value != "all") {
-                let facultyQuery = svgObject.querySelectorAll('[id^="'+value+'"]');
+            if (value != "all") {
+                let facultyQuery = svgObject.querySelectorAll('[id^="' + value + '"]');
                 facultyQuery.forEach(element => element.style.visibility = "visible");
             } else {
                 var devices = svgObject.querySelectorAll('[id^="Devices"]')[0].children;
                 for (let item of devices) {
                     item.style.visibility = "visible";
-                } 
-            }            
+                }
+            }
         }
-        
     </script>
 </body>
+
 </html>
