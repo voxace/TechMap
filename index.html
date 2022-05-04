@@ -100,11 +100,13 @@
         // Shadow on mouse over
         function mouseOverEffect() {
             this.style.filter = "drop-shadow(0px 0px 3px rgb(0, 0, 0, 0.6))";
+            this.style.cursor = "pointer";
         }
 
         // Remove shadow on mouse out
         function mouseOutEffect() {
             this.style.filter = "drop-shadow(0px 0px 3px rgb(0, 0, 0, 0.1))";
+            this.style.cursor = "default";
         }
 
         // Triggers device filter when dropdown changed
