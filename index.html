@@ -29,6 +29,20 @@
             padding-right: 10px;
             font-weight: bold;
         }
+        
+        g {
+            filter: drop-shadow(3px 5px 2px rgb(0, 0, 0));
+            fill: #ec008c;
+            opacity: 1;
+            filter: invert(0.5);
+        }
+        
+        .device-highlight:hover {
+            filter: drop-shadow(3px 5px 2px rgb(0, 0, 0));
+            fill: #ec008c;
+            opacity: 1;
+            filter: invert(0.5);
+        }
     </style>
 </head>
 
@@ -73,9 +87,27 @@
         // Wait for SVG Map to load
         map.addEventListener("load", function() {
             svgObject = map.contentDocument;
-            let Devices = svgObject.getElementById("Devices");
+            let devices = svgObject.querySelectorAll('[id^="Devices"]')[0].children;
+
+            // Mouse over / mouse out events
+            for (var i = 0; i < devices.length; i++) {
+                console.log(devices[i]);
+                devices[i].addEventListener('mouseover', mouseOverEffect);
+                devices[i].addEventListener('mouseout', mouseOutEffect);
+            }
         });
 
+        // Shadow on mouse over
+        function mouseOverEffect() {
+            this.style.filter = "drop-shadow(0px 0px 3px rgb(0, 0, 0, 0.6))";
+        }
+
+        // Remove shadow on mouse out
+        function mouseOutEffect() {
+            this.style.filter = "drop-shadow(0px 0px 3px rgb(0, 0, 0, 0.1))";
+        }
+
+        // Triggers device filter when dropdown changed
         function changeFaculty() {
 
             // Hide all devices
